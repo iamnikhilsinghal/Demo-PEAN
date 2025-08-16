@@ -1,0 +1,53 @@
+POST-
+http://localhost:4000/auth/register
+{
+  "name": "Admin User",
+  "username": "admin",
+  "email": "admin@example.com",
+  "password": "Admin@123",
+  "role": "admin"
+}
+
+POST- 
+http://localhost:4000/auth/login
+{
+   "email": "admin@example.com",
+  "password": "Admin@123"
+}
+
+POST-
+{
+  "name": "User1",
+  "username": "user1",
+  "email": "user1@example.com",
+  "password": "User1@123",
+  "role": "user"
+}
+
+{
+  "name": "User2",
+  "username": "user2",
+  "email": "user2@example.com",
+  "password": "User2@123",
+  "role": "user"
+}
+_____________________________
+
+TOKENIZED APIs-
+
+GET/
+http://localhost:4000/requests
+
+POST-
+http://localhost:4000/requests
+{
+  "title":"leave request user 1",
+  "description": "Need approval for my leave from user 1"
+}
+
+PATCH-
+http://localhost:4000/requests/016daeee-b87d-4bce-a25e-c403bd79fa29/status
+{
+  "status": "approved",
+  "adminComment":"User1 may go"
+}
