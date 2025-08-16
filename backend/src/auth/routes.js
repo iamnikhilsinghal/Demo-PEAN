@@ -14,13 +14,13 @@ router.post("/register", registerValidator, async (req, res) => {
   if (!errors.isEmpty())
     return res.status(400).json({ errors: errors.array() });
 
-  const { name, email, password } = req.body;
+  const { name, email, password, role } = req.body;
   const password_hash = await bcrypt.hash(password, 10);
   try {
     const { rows } = await pool.query(
       `INSERT INTO users (name, email, password_hash, role)
-       VALUES ($1,$2,$3,'user') RETURNING id,name,email,role,created_at`,
-      [name, email, password_hash]
+       VALUES ($1,$2,$3,$4) RETURNING id,name,email,role,created_at`,
+      [name, email, password_hash, role]
     );
     res.status(201).json(rows[0]);
   } catch (e) {
